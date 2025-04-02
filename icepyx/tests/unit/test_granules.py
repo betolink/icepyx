@@ -2,12 +2,12 @@ import re
 
 import pytest
 import responses
+from unittest.mock import patch, MagicMock
 
 import icepyx as ipx
 from icepyx.core import granules as granules
 from icepyx.core.exceptions import NsidcQueryError
 from icepyx.core.granules import Granules as Granules
-
 # @pytest.fixture
 # def reg_a():
 #     return ipx.Query('ATL06',[-55, 68, -48, 71],['2019-02-22','2019-02-28'])
@@ -602,7 +602,7 @@ def test_granules_info():
 
 def test_no_granules_in_search_results():
     ermsg = "Your search returned no results; try different search parameters"
-    with pytest.raises(AssertionError, match=ermsg):
+    with pytest.raises(AssertionError, match=re.escape(ermsg)):
         ipx.Query(
             "ATL06", [-55, 68, -48, 71], ["2019-02-20", "2019-02-20"], version="2"
         ).avail_granules()
@@ -615,7 +615,6 @@ def test_correct_granule_list_returned():
         ["2019-02-20", "2019-02-28"],
         version="6",
     )
-
     (obs_grans,) = reg_a.avail_granules(ids=True)
     exp_grans = [
         "ATL06_20190221121851_08410203_006_02.h5",

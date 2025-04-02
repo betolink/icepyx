@@ -307,7 +307,10 @@ class Query(BaseQuery):
         if not hasattr(self, "_granules"):
             self.granules
         try:
-            self.granules.avail
+            if hasattr(self.granules, "avail"):
+                self.granules.avail
+            else:
+                self.granules.get_avail(self.CMRparams)
         except AttributeError:
             self.granules.get_avail(self.CMRparams)
 

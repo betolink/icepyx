@@ -8,3 +8,5 @@ responses
 types-docutils
 types-requests
 types-tqdm
+mypy
+ruff

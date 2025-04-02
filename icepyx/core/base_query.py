@@ -446,19 +446,6 @@ class BaseQuery(GenQuery, EarthdataAuthMixin):
             return None
 
     @property
-    def dataset(self):
-        """
-        Legacy property included to provide deprecation warning.
-
-        See Also
-        --------
-        product
-        """
-        DeprecationError(
-            "In line with most common usage, 'dataset' has been replaced by 'product'.",
-        )
-
-    @property
     def product(self):
         """
         Return the short name product ID string associated with the query object.
