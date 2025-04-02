@@ -2,12 +2,12 @@ import re
 
 import pytest
 import responses
-from unittest.mock import patch, MagicMock
 
 import icepyx as ipx
 from icepyx.core import granules as granules
 from icepyx.core.exceptions import NsidcQueryError
 from icepyx.core.granules import Granules as Granules
+
 # @pytest.fixture
 # def reg_a():
 #     return ipx.Query('ATL06',[-55, 68, -48, 71],['2019-02-22','2019-02-28'])
